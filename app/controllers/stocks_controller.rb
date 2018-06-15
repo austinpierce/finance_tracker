@@ -6,7 +6,9 @@ class StocksController < ApplicationController
       # :stock is coming from text_field_tag in view
       # render json: @stock
       if @stock # if @stock exists it means it is not nil (check model)
-        render 'users/my_portfolio'
+        respond_to do |format| # for ajax
+          format.js { render partial: 'users/result' }
+        end
       else
         flash[:danger] = "You have entered an invalid stock"
         redirect_to my_portfolio_path
