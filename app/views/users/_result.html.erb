@@ -1,3 +1,7 @@
+<div class = 'results-block'>
+  <%= bootstrap_flash %>
+</div>
+
 <% if @stock # this is needed in case they don't enter a stock @stock won't exist %>
 <div class = 'well results-block'>
   <strong>Symbol: </strong><%= @stock.ticker %>
