@@ -7,7 +7,7 @@ class StocksController < ApplicationController
       # render json: @stock
       if @stock # if @stock exists it means it is not nil (check model)
         respond_to do |format| # for ajax
-          format.js { render partial: 'users/result' }
+          format.js { render partial: 'users/resultx' }
         end
       else
         flash[:danger] = "You have entered an invalid stock"
