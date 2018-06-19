@@ -1,6 +1,9 @@
-<div class = 'results-block'>
-  <%= bootstrap_flash %>
-</div>
+<% if params[:action] == 'search' %> 
+<%# search is coming from stocks controller || This is only here for errors%>
+  <div class = 'results-block'>
+    <%= bootstrap_flash %>
+  </div>
+<% end %>
 
 <% if @stock # this is needed in case they don't enter a stock @stock won't exist %>
 <div class = 'well results-block'>
