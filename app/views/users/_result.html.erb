@@ -1,5 +1,5 @@
 <% if params[:action] == 'search' %> 
-<%# search is coming from stocks controller || This is only here for errors%>
+<%# search is coming from stocks controller || Flash is only here for errors %>
   <div class = 'results-block'>
     <%= bootstrap_flash %>
   </div>
@@ -10,7 +10,19 @@
   <strong>Symbol: </strong><%= @stock.ticker %>
   <strong>Company Name:</strong><%= @stock.name %>
   <strong>Price: $</strong><%= @stock.last_price %>
-  <%= link_to "Add to my stocks", user_stocks_path(user: current_user, stock_ticker: @stock.ticker), #params are user and stock_ticker
-              class: 'btn btn-xs btn-success', method: :post %>
+  <% if current_user.can_add_stock?(@stock.ticker) %>
+    <%= link_to "Add to my stocks", user_stocks_path(user: current_user, stock_ticker: @stock.ticker), #params are user and stock_ticker
+                class: 'btn btn-xs btn-success', method: :post %>
+  <% else %>
+    <span class = 'label label-default'>
+      Stock cannot be added because you have already added
+      <% if !current_user.under_stock_limit? %>
+        10 stocks
+      <% end %>
+      <% if current_user.stock_already_added?(@stock.ticker) %>
+        this stock
+      <% end %>
+    </span>
+  <% end %>
 </div>
 <% end %>
