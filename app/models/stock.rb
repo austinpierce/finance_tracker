@@ -15,6 +15,12 @@ class Stock < ApplicationRecord
       return nil
     end
       #name: , ticker:, last_price: are from DB columns. The . are from gem   
-    end
+  end
+  
+    def self.current_price_stock(ticker_symbol) 
+     # self level method (not working with object) 
+      looked_up_stock = StockQuote::Stock.quote(ticker_symbol)
+      current_price = looked_up_stock.latest_price   
+  end
   
 end

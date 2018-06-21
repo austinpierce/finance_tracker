@@ -13,5 +13,9 @@ def search
       format.js { render partial: 'users/resultx' } 
     end
   end 
+  
+  def current_price
+    @current_stock_price = Stock.current_price_stock(params[:stock])
+  end
 
 end
