@@ -9,4 +9,10 @@ class UsersController < ApplicationController
     @friendships = current_user.friends # initiate instance variable
   end
   
+  def search
+    @users = User.search(params[:search_param])
+              # .search is defined in the user model
+    render json: @users
+  end
+  
 end
