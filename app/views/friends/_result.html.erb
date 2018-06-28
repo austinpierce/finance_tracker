@@ -1,0 +1,7 @@
+<% if params[:action] == 'search' %> 
+<%# search is coming from users controller || Flash is only here for errors %>
+  <div class = 'results-block'>
+<% # result is from lookup.html.erb in div id results %>
+    <%= bootstrap_flash %>
+  </div>
+<% end %>
